@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #define m 10
 
-typedef char clave;
+typedef int clave;
 
 typedef struct TipoRegistro{
-  clave claveRut;
+  clave claveRut[8];
   int digitoVerificador;
   char nombre[10];
   char apellidoPaterno[10];
@@ -19,8 +19,13 @@ typedef struct TipoNodo{
     struct TipoNodo *sgte;
 }nodo;
 
-int hash(clave claveRut){
+int hash(clave claveRut[]){
+    int suma;
+    suma = claveRut[1]+claveRut[8];
 
+}
+
+int insertaToRegistro(nodo tabla[], int indiceHash){
 
 
 }
@@ -28,8 +33,7 @@ int hash(clave claveRut){
 int main()
 {
     nodo *tabla[m]; //Arreglo de punteros a tipo nodo
-
-
+    printf("Ingrese Rut SIN digito verificador: \n");
 
     return 0;
 }
