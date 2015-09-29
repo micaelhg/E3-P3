@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1443533549 source:c:\users\micael hidalgo\documents\github\e3-p3\e3 p3\main.c
+	<stdio.h>
+	<stdlib.h>
+
