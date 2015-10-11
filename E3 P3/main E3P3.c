@@ -12,9 +12,13 @@ typedef struct tabHash{
      nodo *arreglo[m]; //Arreglo de punteros a tipo nodo
 }tablaHash;
 
+int cargandoDatos(){
+return 0;
+}
 
 int main()
 {
+
     //abriendo el archivo
     FILE *ptr = fopen("import.csv","r");
     if (ptr!=NULL){
@@ -23,14 +27,16 @@ int main()
         printf("Error al abrir archivo! \n");
     }
     //Leyendo
-    char caracter=fgetc(ptr);
+    //registro ArrayDatos[36260];
+    //cargandoDatos();
+    char caracter='x'; //Solo para que sea una variable valida para entrar en el sgte while
     char consumir;
     while (caracter != ','){
         caracter=fgetc(ptr);
         if (caracter =='"'){
-            consumir=getc(ptr);
+            caracter=getc(ptr);
         }
-        printf("%c  ", caracter);
+        if (caracter != ',') {printf("%c", caracter);}
    }
     return 0;
 }
