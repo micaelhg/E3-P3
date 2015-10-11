@@ -39,6 +39,7 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="nodo.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
