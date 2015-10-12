@@ -54,14 +54,14 @@ void leerPais(FILE *ptr, char cadena[]){
             caracter=getc(ptrAux);
         }
         if (caracter != ',') {
-                //printf("%c", caracter);
+                printf("%c", caracter);
                 cadena[contador]=caracter;
                 contador++;
         }
     }
     //los lugares que quedan del arreglo se dejan en caracter ESPACIO
-    while (contador<=16){
-        cadena[contador]=' ';
+    while (contador<=18){
+        cadena[contador]='-';
         contador++;
     }
 }
@@ -113,22 +113,24 @@ int cantMerc(ptr){
 
 //Devuelve un puntero al primer elemento de la lista
 preRegistro *cargandoDatos(FILE *ptr){
+
     consumirNombresCampos(ptr);//consume primera linea del archivo
+
     preRegistro *auxiliar=(preRegistro *)malloc(sizeof(preRegistro));
-    auxiliar->periodo=leerPeriodo(ptr);
-    auxiliar->mes=leerMes(ptr);
-    leerPais(ptr, auxiliar->paisOrigen);
-    auxiliar->arancel=leerArancel(ptr);
-    auxiliar->totalCifItemUS=leeTotalUS(ptr);
-    auxiliar->CantidadMercancia=cantMerc(ptr);
-        printf(" | ");
-    if ( !feof(ptr) ){
+
+    if feof(ptr){
+        auxiliar->sgte=NULL;
+         return auxiliar;
+    }else{
+        auxiliar->periodo=leerPeriodo(ptr);
+        auxiliar->mes=leerMes(ptr);
+        leerPais(ptr, auxiliar->paisOrigen);
+        auxiliar->arancel=leerArancel(ptr);
+        auxiliar->totalCifItemUS=leeTotalUS(ptr);
+        auxiliar->CantidadMercancia=cantMerc(ptr);
         auxiliar->sgte=cargandoDatos(ptr);
-                int a=feof(ptr);
-        printf(" %d ", a);
     }
-    printf("ternimo \n");
-    return auxiliar;
+
 }
 
 int main()
@@ -144,6 +146,12 @@ int main()
     //Leyendo
     preRegistro *inicioLista;
     inicioLista=cargandoDatos(ptr);
+    printf("Periodo: %d \n",  inicioLista->periodo);
+    printf("Mes: %d \n",  inicioLista->mes);
+    printf("Pais: %s \n",  inicioLista->paisOrigen);
+    printf("Arancel: %d \n",  inicioLista->arancel);
+    printf("TotalUS: %d \n",  inicioLista->totalCifItemUS);
+    printf("Cant Mercancia: %d \n",  inicioLista->CantidadMercancia);
 
     return 0;
 }

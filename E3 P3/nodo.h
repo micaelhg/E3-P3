@@ -14,7 +14,7 @@ typedef long int key;
 typedef struct TipoPreRegistro{
   int periodo;
   int mes;
-  char paisOrigen[16];
+  char paisOrigen[18];
   int arancel;
   int totalCifItemUS;
   int CantidadMercancia;
