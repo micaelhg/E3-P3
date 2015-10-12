@@ -3,10 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "nodo.h"
-
-
 #define m 10
-
 
 typedef struct tabHash{
      nodo *arreglo[m]; //Arreglo de punteros a tipo nodo
@@ -54,7 +51,6 @@ void leerPais(FILE *ptr, char cadena[]){
             caracter=getc(ptrAux);
         }
         if (caracter != ',') {
-                printf("%c", caracter);
                 cadena[contador]=caracter;
                 contador++;
         }
@@ -112,6 +108,7 @@ int cantMerc(ptr){
 }
 
 //Devuelve un puntero al primer elemento de la lista
+//PROBLEMA DE ENLAZAMIENTO
 preRegistro *cargandoDatos(FILE *ptr){
 
     consumirNombresCampos(ptr);//consume primera linea del archivo
@@ -129,6 +126,7 @@ preRegistro *cargandoDatos(FILE *ptr){
         auxiliar->totalCifItemUS=leeTotalUS(ptr);
         auxiliar->CantidadMercancia=cantMerc(ptr);
         auxiliar->sgte=cargandoDatos(ptr);
+        return auxiliar;
     }
 
 }
@@ -152,6 +150,5 @@ int main()
     printf("Arancel: %d \n",  inicioLista->arancel);
     printf("TotalUS: %d \n",  inicioLista->totalCifItemUS);
     printf("Cant Mercancia: %d \n",  inicioLista->CantidadMercancia);
-
     return 0;
 }
