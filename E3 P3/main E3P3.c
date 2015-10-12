@@ -54,7 +54,7 @@ void leerPais(FILE *ptr, char cadena[]){
             caracter=getc(ptrAux);
         }
         if (caracter != ',') {
-                printf("%c", caracter);
+                //printf("%c", caracter);
                 cadena[contador]=caracter;
                 contador++;
         }
@@ -69,23 +69,47 @@ void leerPais(FILE *ptr, char cadena[]){
 int leerArancel(FILE *ptr){
     char consumir;
     consumir=fgetc(ptr); //pasa por alto caracter "
-    printf("\n%c\n", consumir);
-    consumir=fgetc(ptr); //pasa por alto caracter ,
-      printf("\n%c\n", consumir);
-    consumir=fgetc(ptr); //pasa por alto caracter "
-      printf("\n%c\n", consumir);
-    char cadena[10];
-    fgets(cadena, 10, ptr);
-    int i=0;
-    while (i<=10 ){
-        printf("%c",cadena[i]);
-        i++;
-    }
-    int numero=atoi(cadena); //convieprintf("%c", consumir);rte cadena numerica a int
-   printf("%d", numero);
+    char cadena[9];
+    fgets(cadena, 9, ptr);
+    int numero=atoi(cadena); //convierte cadena numerica a int
     return numero;
 }
 
+int leeTotalUS(FILE *ptr){
+    FILE *ptrAux=ptr;
+    char consumir;
+    consumir=fgetc(ptrAux); //pasa por alto caracter "
+    consumir=fgetc(ptrAux); //pasa por alto caracter ,
+char cadena[10];
+   int contador=0;
+    char caracter='x'; //Solo para que sea una variable valida para entrar en el sgte while
+    while (caracter != ','){
+        caracter=fgetc(ptrAux);
+        if (caracter =='"'){
+            caracter=getc(ptrAux);
+        }
+        if (caracter != ',') {
+                //printf("%c", caracter);
+                cadena[contador]=caracter;
+                contador++;
+        }
+    }
+    //los lugares que quedan del arreglo se dejan en caracter ESPACIO
+    while (contador<=10){
+        cadena[contador]=' ';
+        contador++;
+    }
+    int numero=atoi(cadena);
+    //printf(" %d ", numero);
+    //printf(" %c ", fgetc(ptr));
+    return numero;
+}
+int cantMerc(ptr){
+        char cadena[8];
+    fgets(cadena, 8, ptr);
+    int numero=atoi(cadena); //convierte cadena numerica a int
+    return numero;
+}
 
 //Devuelve un puntero al primer elemento de la lista
 preRegistro *cargandoDatos(FILE *ptr){
@@ -95,8 +119,16 @@ preRegistro *cargandoDatos(FILE *ptr){
     auxiliar->mes=leerMes(ptr);
     leerPais(ptr, auxiliar->paisOrigen);
     auxiliar->arancel=leerArancel(ptr);
-
-return auxiliar;
+    auxiliar->totalCifItemUS=leeTotalUS(ptr);
+    auxiliar->CantidadMercancia=cantMerc(ptr);
+        printf(" | ");
+    if ( !feof(ptr) ){
+        auxiliar->sgte=cargandoDatos(ptr);
+                int a=feof(ptr);
+        printf(" %d ", a);
+    }
+    printf("ternimo \n");
+    return auxiliar;
 }
 
 int main()
