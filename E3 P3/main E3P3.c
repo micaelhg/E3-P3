@@ -56,7 +56,7 @@ void leerPais(FILE *ptr, char cadena[]){
         }
     }
     //los lugares que quedan del arreglo se dejan en caracter ESPACIO
-    while (contador<=18){
+    while (contador<18){
         cadena[contador]='-';
         contador++;
     }
@@ -76,7 +76,7 @@ int leeTotalUS(FILE *ptr){
     char consumir;
     consumir=fgetc(ptrAux); //pasa por alto caracter "
     consumir=fgetc(ptrAux); //pasa por alto caracter ,
-char cadena[10];
+char cadena[10]={'0','0','0','0','0','0','0','0','0','0'};
    int contador=0;
     char caracter='x'; //Solo para que sea una variable valida para entrar en el sgte while
     while (caracter != ','){
@@ -85,17 +85,21 @@ char cadena[10];
             caracter=getc(ptrAux);
         }
         if (caracter != ',') {
-                //printf("%c", caracter);
+                printf("%c", caracter);
                 cadena[contador]=caracter;
                 contador++;
         }
     }
-    //los lugares que quedan del arreglo se dejan en caracter ESPACIO
-    while (contador<=10){
-        cadena[contador]=' ';
-        contador++;
+    //Ordenar 0's a la Izquierda para la conversion a int
+    int ultimo=10;
+    while (contador>=0){
+        cadena[ultimo]=cadena[contador];
+        cadena[contador]='0';
+        contador--;
+        ultimo--;
     }
-    int numero=atoi(cadena);
+    int numero=0;
+    numero=atoi(cadena);
     //printf(" %d ", numero);
     //printf(" %c ", fgetc(ptr));
     return numero;
@@ -146,7 +150,11 @@ int main()
     inicioLista=cargandoDatos(ptr);
     printf("Periodo: %d \n",  inicioLista->periodo);
     printf("Mes: %d \n",  inicioLista->mes);
-    printf("Pais: %s \n",  inicioLista->paisOrigen);
+    int i=0;
+    while (i<18){
+        printf(" %c ",  inicioLista->paisOrigen[i]);
+        i++;
+    }
     printf("Arancel: %d \n",  inicioLista->arancel);
     printf("TotalUS: %d \n",  inicioLista->totalCifItemUS);
     printf("Cant Mercancia: %d \n",  inicioLista->CantidadMercancia);
