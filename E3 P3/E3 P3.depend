@@ -12,12 +12,17 @@
 	<stdlib.h>
 	"nodo.h"
 
-1444675118 c:\users\micael hidalgo\documents\github\e3-p3\e3 p3\nodo.h
+1444789617 c:\users\micael hidalgo\documents\github\e3-p3\e3 p3\nodo.h
 	<stdio.h>
 	<stdlib.h>
 
-1444783025 source:c:\users\micael hidalgo\documents\github\e3-p3\e3 p3\new main.c
+1444793573 source:c:\users\micael hidalgo\documents\github\e3-p3\e3 p3\new main.c
 	<stdio.h>
 	<stdlib.h>
 	"nodo.h"
+	"cargaDatos.h"
+
+1444783974 c:\users\micael hidalgo\documents\github\e3-p3\e3 p3\cargadatos.h
+	<stdio.h>
+	<stdlib.h>
 

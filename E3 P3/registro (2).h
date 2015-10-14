@@ -24,17 +24,11 @@ typedef struct TipoPreRegistro{
 typedef struct TipoRegistro{
   int periodo;
   int mes;
-  char *paisOrigen[18];
+  char *paisOrigen[15];
   int arancel;
   int totalCifItemUS;
   int CantidadMercancia;
-  struct TipoRegistro *sgte;
 }registro;
-
-typedef struct TipoNodo{
-    int elementos;
-    registro *primerElemento;
-}nodo;
 
 
 
