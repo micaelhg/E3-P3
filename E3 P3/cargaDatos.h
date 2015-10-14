@@ -99,7 +99,7 @@ int leeTotalUS(FILE *ptr){
     //printf(" %c ", fgetc(ptr));
     return numero;
 }
-int cantMerc(ptr){
+int cantMerc(FILE *ptr){
     char caracter=fgetc(ptr);
 
     char cadena[8]={'0','0','0','0','0','0','0','0'};
@@ -120,13 +120,13 @@ int cantMerc(ptr){
     }
 
     int numero=atoi(cadena); //convierte cadena numerica a int
-    return numero;
+    return (numero/10);
 }
 
 //Devuelve un puntero al primer elemento de la lista
 //PROBLEMA DE ENLAZAMIENTO
-preRegistro *cargandoDatos(FILE *ptr){
-    preRegistro *auxiliar=(preRegistro *)malloc(sizeof(preRegistro));
+registro *cargandoDatos(FILE *ptr){
+    registro *auxiliar=(registro *)malloc(sizeof(registro));
     if (fgetc(ptr)=='.'){
         char noImportante = fgetc(ptr);
     }

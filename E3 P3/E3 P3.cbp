@@ -31,6 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="cargaDatos.h" />
 		<Unit filename="new Main.c">
 			<Option compilerVar="CC" />
 		</Unit>

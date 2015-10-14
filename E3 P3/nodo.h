@@ -10,21 +10,11 @@
 
 
 typedef long int key;
-//Tipo Preregistro para cargar los datos en la memoria para trabajar con ellos
-typedef struct TipoPreRegistro{
-  int periodo;
-  int mes;
-  char paisOrigen[18];
-  int arancel;
-  int totalCifItemUS;
-  int CantidadMercancia;
-  struct TipoPreRegistro *sgte;
-}preRegistro;
 
 typedef struct TipoRegistro{
   int periodo;
   int mes;
-  char *paisOrigen[18];
+  char paisOrigen[18];
   int arancel;
   int totalCifItemUS;
   int CantidadMercancia;

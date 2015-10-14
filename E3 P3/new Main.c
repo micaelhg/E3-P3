@@ -7,19 +7,20 @@
 #define TAM 6260
 
 typedef struct tabHash{
-     nodo *arreglo[TAM]; //Arreglo de punteros a tipo nodo
+     nodo arreglo[TAM]; //Arreglo de punteros a tipo nodo
 }tablaHash;
 
-int fxHash(preRegistro *inicioLista){
+int fxHash(registro *inicioLista){
     int var_1=inicioLista->arancel;
     int var_2=inicioLista->totalCifItemUS;
     int var_3=inicioLista->CantidadMercancia;
     if (var_3==0){ var_3=1;}
-    int k=(var_1*var_2*0,3)/var_3;
-    return (k%TAM);
+    float k= ((var_1*var_2*0.3) /var_3);
+    int clave=(int)k;  //cast
+    return (clave%TAM);
 }
 
-int copiaDatos(registro *auxiliar, preRegistro *lista){
+int copiaDatos(registro *auxiliar, registro *lista){
     auxiliar->arancel=lista->arancel;
     auxiliar->CantidadMercancia=lista->CantidadMercancia;
     auxiliar->mes=lista->mes;
@@ -32,28 +33,38 @@ int copiaDatos(registro *auxiliar, preRegistro *lista){
         }
     auxiliar->sgte=NULL;
 }
-int insertaTotabla(int clave_key,nodo arreglo[],int elementos, preRegistro *lista){
-    registro *auxiliar=(registro *)malloc(sizeof(registro));
-    copiaDatos(auxiliar, lista);
+int insertaTotabla(int clave_key,tablaHash *tabla, registro *lista,int elementos){
     if (elementos==0){
-        arreglo[clave_key].elementos=1;
-        arreglo[clave_key].primerElemento=auxiliar;
+        tabla->arreglo[clave_key].primerElemento =lista;
+        tabla->arreglo[clave_key].elementos=1;
     }else{
-        registro *aux=arreglo[clave_key].primerElemento;
-        while(aux->sgte!=NULL){
-            aux=aux->sgte;
+        registro *actual=tabla->arreglo[clave_key].primerElemento;
+        while((actual->sgte)!=NULL){
+            actual=actual->sgte;
         }
-        aux->sgte=auxiliar;
+        actual->sgte=lista;
+        tabla->arreglo[clave_key].elementos++;
     }
-
 }
 
-tablaHash *devuelveTablaHash(preRegistro *inicioLista){
+void inicializarTabla(tablaHash *tabla){
+    int contador = 0;
+    while (contador <=TAM){
+        tabla->arreglo[contador].elementos=0;
+        tabla->arreglo[contador].primerElemento=NULL;
+        contador++;
+    }
+}
+
+tablaHash *devuelveTablaHash(registro *inicioLista){
     tablaHash *tabla;
     tabla=(tablaHash*)malloc(sizeof(tablaHash));
+    inicializarTabla(tabla);
     while (inicioLista->sgte!=NULL){
         int clave_key=fxHash(inicioLista);
-        insertaTotabla(clave_key, tabla->arreglo,tabla->arreglo[clave_key]->elementos ,inicioLista);
+        printf("clave: %d", clave_key);
+        insertaTotabla(clave_key, tabla , inicioLista, tabla->arreglo[clave_key].elementos);
+        inicioLista=inicioLista->sgte;
     }
     return tabla;
 }
@@ -69,7 +80,7 @@ int main()
         printf("Error al abrir archivo! \n");
     }
     //Leyendo
-    preRegistro *inicioLista;
+    registro *inicioLista;
     consumirNombresCampos(ptr);//consume primera linea del archivo
     inicioLista=cargandoDatos(ptr);
 
