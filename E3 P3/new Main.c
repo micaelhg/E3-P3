@@ -4,12 +4,19 @@
 #include <stdlib.h>
 #include "nodo.h"
 #include "cargaDatos.h"
-#define m 10
+#define TAM 6260
 
 typedef struct tabHash{
-     nodo *arreglo[m]; //Arreglo de punteros a tipo nodo
+     nodo *arreglo[TAM]; //Arreglo de punteros a tipo nodo
 }tablaHash;
 
+tablaHash *devuelveTablaHash(tablaHash *tabla,preRegistro *inicioLista){
+    tabla=(tablaHash*)malloc(sizeof(tablaHash));
+    while (inicioLista->sgte!=NULL){
+
+    }
+    return tabla;
+}
 
 int main()
 {
@@ -25,6 +32,9 @@ int main()
     preRegistro *inicioLista;
     consumirNombresCampos(ptr);//consume primera linea del archivo
     inicioLista=cargandoDatos(ptr);
-//    insertarToTablaHash();
+
+    //se declara puntero a tipo tablahash
+    tablaHash *tabla;
+    tabla=devuelveTablaHash(tabla, inicioLista);
     return 0;
 }

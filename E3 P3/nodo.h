@@ -32,8 +32,6 @@ typedef struct TipoRegistro{
 
 typedef struct TipoNodo{
     registro datos;
-    key clave;
-    struct TipoNodo *sgte;
 }nodo;
 
 
